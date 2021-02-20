@@ -1,0 +1,12 @@
+{
+  "name": "udemy1",
+  "displayName": "udemy1",
+  "expo": {
+    "name": "udemy1",
+    "slug": "udemy1",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
