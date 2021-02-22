@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import Card from '../Components/Card';
-export default function StartGameScreen(props) {
+export default function StartGameScreen({navigation}) {
     const [enteredValue, setEnteredValue] = useState('');
     const [confirmed, setconfirmed] = useState(false);
     const [selectedNumber, setSelectedNumber] = useState();
@@ -34,7 +34,7 @@ export default function StartGameScreen(props) {
                 </View>
               
                 <View >
-                    <TouchableOpacity >
+                    <TouchableOpacity onPress={() => navigation.navigate('GameScreen')} >
                         <Text style={{color:'purple', fontWeight: 'bold', fontSize:20}}>START GAME</Text>
                     </TouchableOpacity>
                     

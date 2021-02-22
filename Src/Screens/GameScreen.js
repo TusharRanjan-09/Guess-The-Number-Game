@@ -15,9 +15,10 @@ const generateRandom = (min,max,exclude) => {
 export default function GameScreen(props) {
     const [currentGuess, setCurrentGuess] = useState(generateRandom(1,100, props.userChoice))
      return (
-    <View style={styles.header}>
-      <Text style={styles.headerTitle}>Hi</Text> 
-      {currentGuess}
+    <View style={styles.container}>
+      <Text >Hi</Text> 
+      <Text>{currentGuess}</Text>
+  
       <Card>
 <TouchableOpacity>
   <Text>LOWER</Text>
@@ -31,13 +32,10 @@ export default function GameScreen(props) {
 }
 
 const styles = StyleSheet.create({
-    header: {
-   width:'100%',
-   height:50,
-    backgroundColor: '#f7287b',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding:35
+    container: {
+  flex:1,
+    backgroundColor: 'white',
+   
   },
   headerTitle: {
       color: 'white',
