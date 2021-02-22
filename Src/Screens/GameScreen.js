@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import Card from '../Components/Card';
 const generateRandom = (min,max,exclude) => {
     min=Math.ceil(min);
     max = Math.floor(max);
@@ -16,6 +17,15 @@ export default function GameScreen(props) {
      return (
     <View style={styles.header}>
       <Text style={styles.headerTitle}>Hi</Text> 
+      {currentGuess}
+      <Card>
+<TouchableOpacity>
+  <Text>LOWER</Text>
+</TouchableOpacity>
+<TouchableOpacity>
+  <Text>HIGHER</Text>
+</TouchableOpacity>
+      </Card>
     </View>
   );
 }
