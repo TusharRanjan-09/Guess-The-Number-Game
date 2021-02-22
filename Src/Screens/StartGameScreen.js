@@ -54,7 +54,7 @@ export default function StartGameScreen({ navigation }) {
                         onChangeText={numInputHandler}
                         style={{ fontSize: 22 }}
                     />
-                    <Text>{enteredValue}</Text>
+                    {/* <Text>{enteredValue}</Text> */}
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', height: 80, padding: 20 }}>
                         <TouchableOpacity style={{ marginHorizontal: 25 }}
                             onPress={resetHnadler}

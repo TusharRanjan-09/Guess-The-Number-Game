@@ -45,9 +45,9 @@ export default function GameScreen(props) {
 
   return (
     <View style={styles.container}>
-      <Text >Opponent's Choice</Text>
-      <Text>{props.userChoice}</Text>
-      <View style={{ borderWidth: 2, padding: 12, borderRadius: 10, marginVertical: 5, borderColor: 'darkgreen' }}>
+      <Text style={{fontSize: 20, color: 'blue'}}>Opponent's Choice</Text>
+      {/* <Text>{props.route.params.userChoice}</Text> */}
+      <View style={{ borderWidth: 2, padding: 12, borderRadius: 10, marginVertical: 15, borderColor: 'darkgreen' }}>
         <Text style={{ color: 'darkgreen', fontSize: 25 }}>{currentGuess}</Text>
       </View>
 
