@@ -20,11 +20,12 @@ export default function GameScreen(props) {
   const currentHigh = useRef(100);
   const navigateHandler = () => {
     navigation.navigate('StartGameScreen')
+    props.route.params.resetHnadler;
   };
   useEffect(() => {
     if (currentGuess === props.route.params.selectedNumber) {
       Alert.alert('Game Over !!','Guessed Number is equal to computers guess.', [{ text: 'Restart', style: 'cancel', onPress:navigateHandler}])
-      // <Button title="Press" onPress={()=> navigation.navigate('StartGameScreen')}/>
+
     }
   })
   const nextGuessHandler = (direction) => {
