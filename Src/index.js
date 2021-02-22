@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import StartGameScreen from './Screens/StartGameScreen';
 import GameScreen from './Screens/GameScreen';
+import GameOverScreen from './Screens/GameOverScreen';
 const Stack = createStackNavigator();
 
 function Index() {
@@ -13,6 +14,7 @@ function Index() {
       <Stack.Navigator headerMode={false}>
         <Stack.Screen name="StartGameScreen" component={StartGameScreen} />
         <Stack.Screen name="GameScreen" component={GameScreen} />
+        <Stack.Screen name="GameOverScreen" component={GameOverScreen} />
 
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useRef, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Alert, Button } from 'react-native';
 import Card from '../Components/Card';
+import { useNavigation } from '@react-navigation/native';
 const generateRandom = (min, max, exclude) => {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -13,18 +14,23 @@ const generateRandom = (min, max, exclude) => {
   }
 }
 export default function GameScreen(props) {
+  const navigation = useNavigation();
   const [currentGuess, setCurrentGuess] = useState(generateRandom(1, 100, props.route.params.selectedNumber))
   const currentLow = useRef(1);
   const currentHigh = useRef(100);
+  const navigateHandler = () => {
+    navigation.navigate('StartGameScreen')
+  };
   useEffect(() => {
     if (currentGuess === props.route.params.selectedNumber) {
-      Alert.alert('Game Over !!')
+      Alert.alert('Game Over !!','Guessed Number is equal to computers guess.', [{ text: 'Restart', style: 'cancel', onPress:navigateHandler}])
+      // <Button title="Press" onPress={()=> navigation.navigate('StartGameScreen')}/>
     }
   })
   const nextGuessHandler = (direction) => {
     if (direction === 'lower' && currentGuess < props.route.params.selectedNumber ||
       (direction === 'greater' && currentGuess > props.route.params.selectedNumber)) {
-      Alert.alert('You know this', 'Bro You Know this', [{ text: 'Sorry', style: 'cancel' }])
+      Alert.alert("Don't lie!", 'You know that this is wrong...', [{ text: 'Cancel', style: 'cancel' }])
       return;
     }
     if (direction === 'lower') {
@@ -43,7 +49,7 @@ export default function GameScreen(props) {
       <View style={{ borderWidth: 2, padding: 12, borderRadius: 10, marginVertical: 5, borderColor: 'darkgreen' }}>
         <Text style={{ color: 'darkgreen', fontSize: 25 }}>{currentGuess}</Text>
       </View>
-
+<Button title="Press" onPress={()=> navigation.navigate('StartGameScreen')}/>
       <Card>
         <View style={{ flexDirection: 'row', }}>
           <TouchableOpacity onPress={nextGuessHandler.bind(this, 'lower')}>
