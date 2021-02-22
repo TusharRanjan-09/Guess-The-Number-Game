@@ -50,7 +50,7 @@ export default function GameScreen(props) {
       <View style={{ borderWidth: 2, padding: 12, borderRadius: 10, marginVertical: 5, borderColor: 'darkgreen' }}>
         <Text style={{ color: 'darkgreen', fontSize: 25 }}>{currentGuess}</Text>
       </View>
-<Button title="Press" onPress={()=> navigation.navigate('StartGameScreen')}/>
+
       <Card>
         <View style={{ flexDirection: 'row', }}>
           <TouchableOpacity onPress={nextGuessHandler.bind(this, 'lower')}>
