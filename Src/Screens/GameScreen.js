@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Card from '../Components/Card';
 const generateRandom = (min,max,exclude) => {
@@ -13,19 +13,35 @@ const generateRandom = (min,max,exclude) => {
     }
         } 
 export default function GameScreen(props) {
-    const [currentGuess, setCurrentGuess] = useState(generateRandom(1,100, props.userChoice))
+    const [currentGuess, setCurrentGuess] = useState(generateRandom(1,100, props.route.params.selectedNumber))
+    const nextGuessHandler = (direction) => {
+if(direction === 'lower' && currentGuess < props.route.params.selectedNumber || (direction === 'greater' && currentGuess > props.route.params.selectedNumber)) {
+Alert.alert('You know this', [{text: 'Sorry', style: 'cancel'}])
+return;
+}
+if (direction === 'lower') {
+
+}
+    }
+    console.warn(props.route.params.selectedNumber)
      return (
     <View style={styles.container}>
-      <Text >Hi</Text> 
-      <Text>{currentGuess}</Text>
+      <Text >Opponent's Choice</Text> 
+      <Text>{props.userChoice}</Text>
+      <View style={{borderWidth:2, padding:12, borderRadius:10, marginVertical:5, borderColor: 'darkgreen'}}>
+                <Text style={{color: 'darkgreen', fontSize:25}}>{currentGuess}</Text>
+                </View>
   
       <Card>
-<TouchableOpacity>
-  <Text>LOWER</Text>
+        <View style={{flexDirection : 'row', }}>
+        <TouchableOpacity onPress={nextGuessHandler.bind(this, 'lower')}>
+  <Text style={{color:'yellow', fontWeight: 'bold', fontSize:20, marginRight:25}}>LOWER</Text>
 </TouchableOpacity>
-<TouchableOpacity>
-  <Text>HIGHER</Text>
+<TouchableOpacity onPress={nextGuessHandler.bind(this, 'greater')}>
+  <Text style={{color:'purple', fontWeight: 'bold', fontSize:20}}>HIGHER</Text>
 </TouchableOpacity>
+        </View>
+
       </Card>
     </View>
   );
@@ -35,6 +51,7 @@ const styles = StyleSheet.create({
     container: {
   flex:1,
     backgroundColor: 'white',
+    alignItems: 'center'
    
   },
   headerTitle: {
