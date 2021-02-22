@@ -34,7 +34,7 @@ export default function StartGameScreen({navigation}) {
                 </View>
               
                 <View >
-                    <TouchableOpacity onPress={() => navigation.navigate('GameScreen')} >
+                    <TouchableOpacity onPress={() => navigation.navigate('GameScreen', usersChoice={selectedNumber})} >
                         <Text style={{color:'purple', fontWeight: 'bold', fontSize:20}}>START GAME</Text>
                     </TouchableOpacity>
                     
