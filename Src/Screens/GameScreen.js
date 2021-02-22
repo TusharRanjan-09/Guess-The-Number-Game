@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState, useRef} from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import React, {useState, useRef, useEffect} from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
 import Card from '../Components/Card';
 const generateRandom = (min,max,exclude) => {
     min=Math.ceil(min);
@@ -14,16 +14,28 @@ const generateRandom = (min,max,exclude) => {
         } 
 export default function GameScreen(props) {
     const [currentGuess, setCurrentGuess] = useState(generateRandom(1,100, props.route.params.selectedNumber))
+   const currentLow = useRef(1);
+   const currentHigh = useRef(100);
+   useEffect (()=> {
+if (currentGuess === props.route.params.selectedNumber) {
+  Alert.alert('Game Over !!')
+}
+   })
     const nextGuessHandler = (direction) => {
-if(direction === 'lower' && currentGuess < props.route.params.selectedNumber || (direction === 'greater' && currentGuess > props.route.params.selectedNumber)) {
-Alert.alert('You know this', [{text: 'Sorry', style: 'cancel'}])
+if(direction === 'lower' && currentGuess < props.route.params.selectedNumber ||
+  (direction === 'greater' && currentGuess > props.route.params.selectedNumber)) {
+Alert.alert('You know this', 'Bro You Know this', [{text: 'Sorry', style: 'cancel'}])
 return;
 }
 if (direction === 'lower') {
-
+currentHigh.current = currentGuess;
+} else {
+  currentLow.current = currentGuess;
+} 
+const nextNum = generateRandom(currentHigh.current, currentLow.current, currentGuess)
+   setCurrentGuess(nextNum)
 }
-    }
-    console.warn(props.route.params.selectedNumber)
+   
      return (
     <View style={styles.container}>
       <Text >Opponent's Choice</Text> 
